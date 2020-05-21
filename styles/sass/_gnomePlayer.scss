@@ -1,0 +1,272 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet');
+
+$base-color: #4E3FA3;
+$highlight-color: rgb(89, 75, 167);
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+.page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background: #000;
+  .gnome-container {
+    position: relative;
+    width: 640px;
+    overflow: hidden;
+    .gnome-overlay {
+      position: relative;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transition: all 1s ease;
+      .title-overlay {
+        position: absolute;
+        left: 6px;
+        top: 6px;
+        font-size: 22px;
+      }
+      .play-overlay {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        font-size: 2rem;
+        font-weight: 700;
+        color: #FFF;
+        background-color: transparent;
+        border: 8px solid rgba(255, 255, 255, 0.3);
+        &.active {
+          &:after {
+            content: "";
+            width: 40px;
+            height: 30px;
+            background-image: url('../../images/play.svg');
+            background-size: 40px 30px;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.5;
+          }
+        }
+      }
+    }
+    .gnome-overlay {
+      display: flex;
+      opacity: 0;
+      transition: all 1s ease;
+      z-index: 1;
+      &.active {
+        opacity: 1;
+      }
+    }
+    &:hover {
+      & .gnome-overlay {
+        opacity: 1;
+      }
+      & .controls-container {
+        bottom: 0;
+      }
+    }
+    .up-next-overlay {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      position: absolute;
+      right: 0;
+      bottom: 120px;
+      width: 240px;
+      height: 120px;
+      padding: 8px;
+      color: #FFF;
+      background: $base-color;
+      z-index: 2;
+      .up-next-title {
+        color: #FFF;
+      }
+      .up-next-countdown {
+        font-size: 14px;
+      }
+      .up-next-button-cont {
+        display: flex;
+        align-items: flex-end;
+        .up-next-thumbnail {
+          width: 90px;
+          height: 50px;
+        }
+        button {
+          margin-left: 12px;
+          padding: 6px 12px;
+          background: none;
+          color: #FFF;
+          border: 2px solid $highlight-color;
+          cursor: pointer;
+          &:hover {
+            background: $highlight-color;
+          }
+        }
+      }
+    }
+    .video-player {
+      width: 100%;
+      height: auto;
+    }
+    .time-widget {
+      display: none;
+      position: absolute;
+      padding: 6px 0;
+      width: 50px;
+      background: #FFF;
+      transform: translate(-50%, -130%);
+      font-size: 12px;
+      &.show {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: -6px;
+        left: 15px;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 7px solid #FFF;
+      }
+    }
+    .controls-container {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.9);
+      transition: all .3s ease-in-out;
+      z-index: 100;
+      .progress-bar {
+        position: relative;
+        height: 6px;
+        width: 100%;
+        margin-bottom: 12px;
+        background: rgb(90, 90, 90);
+        cursor: pointer;
+        transition: all .2s ease;
+        .progress-inner {
+          height: 100%;
+          width: 0px;
+          background: $base-color;
+        }
+        .progress-marker {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 6px;
+          width: 6px;
+          border-radius: 50%;
+          background: #FFF;
+          transition: width .2s, height .2s ease;
+        }
+        &:hover {
+          height: 18px;
+          .progress-marker {
+            height: 18px;
+            width: 18px;
+          }
+        }
+      }
+      .button-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        .current-time {
+          margin-left: 12px;
+          color: #FFF;
+          font-size: 14px;
+        }
+        .play-pause-btn, .mute-btn, .fullscreen-btn {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 24px;
+          height: 24px;
+          color: #FFF;;
+          border: none;
+          border-radius: 50%;
+          background: transparent;
+          cursor: pointer;
+          &:focus {
+            outline: 1px solid $base-color;
+          }
+        }
+        .fullscreen-btn {
+          margin-left: 50px;
+        }
+        .play-pause-btn {
+          width: 30px;
+          height: 30px;
+        }
+        .volume-controls {
+          display: flex;
+          align-items: center;
+          .mute-btn {
+            margin-left: 12px;
+          }
+          .volume-bar-container {
+            height: 6px;
+            width: 80px;
+            margin-left: 6px;
+            background: #FFF;
+            cursor: pointer;
+            .volume-bar {
+              height: 6px;
+              width: 0px;
+              background: $base-color;
+            }
+          }
+        }
+        .volume-controls, .play-pause-btn, .fullscreen-btn {
+          opacity: .8;
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+  .video-tile-container {
+    display: flex;
+    justify-content: space-between;
+    width: 640px;
+    margin-top: 12px;
+    .video-tile {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 200px;
+      height: 100px;
+      color: #FFF;
+      background: $base-color;
+      cursor: pointer;
+      &:hover {
+        background: $highlight-color;
+      }
+    }
+  }
+}

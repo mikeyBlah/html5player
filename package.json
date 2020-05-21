@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "node-sass": "^4.7.2"
+  },
+  "scripts": {
+    "compile:sass": "node-sass styles/sass/_gnomePlayer.scss styles/css/_gnomePlayer.css",
+    "scss": "node-sass --watch styles/scss -o styles/css"
+  },
+  "devDependencies": {
+    "node-sass": "^4.7.2"
+  }
+}

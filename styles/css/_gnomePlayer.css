@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet');
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif; }
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background: #000; }
+  .page-container .gnome-container {
+    position: relative;
+    width: 640px;
+    overflow: hidden; }
+    .page-container .gnome-container .gnome-overlay {
+      position: relative;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transition: all 1s ease; }
+      .page-container .gnome-container .gnome-overlay .title-overlay {
+        position: absolute;
+        left: 6px;
+        top: 6px;
+        font-size: 22px; }
+      .page-container .gnome-container .gnome-overlay .play-overlay {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        font-size: 2rem;
+        font-weight: 700;
+        color: #FFF;
+        background-color: transparent;
+        border: 8px solid rgba(255, 255, 255, 0.3); }
+        .page-container .gnome-container .gnome-overlay .play-overlay.active:after {
+          content: "";
+          width: 40px;
+          height: 30px;
+          background-image: url("../../images/play.svg");
+          background-size: 40px 30px;
+          background-position: center;
+          background-repeat: no-repeat;
+          opacity: 0.5; }
+    .page-container .gnome-container .gnome-overlay {
+      display: flex;
+      opacity: 0;
+      transition: all 1s ease;
+      z-index: 1; }
+      .page-container .gnome-container .gnome-overlay.active {
+        opacity: 1; }
+    .page-container .gnome-container:hover .gnome-overlay {
+      opacity: 1; }
+    .page-container .gnome-container:hover .controls-container {
+      bottom: 0; }
+    .page-container .gnome-container .up-next-overlay {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      position: absolute;
+      right: 0;
+      bottom: 120px;
+      width: 240px;
+      height: 120px;
+      padding: 8px;
+      color: #FFF;
+      background: #4E3FA3;
+      z-index: 2; }
+      .page-container .gnome-container .up-next-overlay .up-next-title {
+        color: #FFF; }
+      .page-container .gnome-container .up-next-overlay .up-next-countdown {
+        font-size: 14px; }
+      .page-container .gnome-container .up-next-overlay .up-next-button-cont {
+        display: flex;
+        align-items: flex-end; }
+        .page-container .gnome-container .up-next-overlay .up-next-button-cont .up-next-thumbnail {
+          width: 90px;
+          height: 50px; }
+        .page-container .gnome-container .up-next-overlay .up-next-button-cont button {
+          margin-left: 12px;
+          padding: 6px 12px;
+          background: none;
+          color: #FFF;
+          border: 2px solid #594ba7;
+          cursor: pointer; }
+          .page-container .gnome-container .up-next-overlay .up-next-button-cont button:hover {
+            background: #594ba7; }
+    .page-container .gnome-container .video-player {
+      width: 100%;
+      height: auto; }
+    .page-container .gnome-container .time-widget {
+      display: none;
+      position: absolute;
+      padding: 6px 0;
+      width: 50px;
+      background: #FFF;
+      transform: translate(-50%, -130%);
+      font-size: 12px; }
+      .page-container .gnome-container .time-widget.show {
+        display: flex;
+        justify-content: center;
+        align-items: center; }
+      .page-container .gnome-container .time-widget:after {
+        content: "";
+        position: absolute;
+        bottom: -6px;
+        left: 15px;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 7px solid #FFF; }
+    .page-container .gnome-container .controls-container {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.9);
+      transition: all .3s ease-in-out;
+      z-index: 100; }
+      .page-container .gnome-container .controls-container .progress-bar {
+        position: relative;
+        height: 6px;
+        width: 100%;
+        margin-bottom: 12px;
+        background: #5a5a5a;
+        cursor: pointer;
+        transition: all .2s ease; }
+        .page-container .gnome-container .controls-container .progress-bar .progress-inner {
+          height: 100%;
+          width: 0px;
+          background: #4E3FA3; }
+        .page-container .gnome-container .controls-container .progress-bar .progress-marker {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 6px;
+          width: 6px;
+          border-radius: 50%;
+          background: #FFF;
+          transition: width .2s, height .2s ease; }
+        .page-container .gnome-container .controls-container .progress-bar:hover {
+          height: 18px; }
+          .page-container .gnome-container .controls-container .progress-bar:hover .progress-marker {
+            height: 18px;
+            width: 18px; }
+      .page-container .gnome-container .controls-container .button-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly; }
+        .page-container .gnome-container .controls-container .button-container .current-time {
+          margin-left: 12px;
+          color: #FFF;
+          font-size: 14px; }
+        .page-container .gnome-container .controls-container .button-container .play-pause-btn, .page-container .gnome-container .controls-container .button-container .mute-btn, .page-container .gnome-container .controls-container .button-container .fullscreen-btn {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 24px;
+          height: 24px;
+          color: #FFF;
+          border: none;
+          border-radius: 50%;
+          background: transparent;
+          cursor: pointer; }
+          .page-container .gnome-container .controls-container .button-container .play-pause-btn:focus, .page-container .gnome-container .controls-container .button-container .mute-btn:focus, .page-container .gnome-container .controls-container .button-container .fullscreen-btn:focus {
+            outline: 1px solid #4E3FA3; }
+        .page-container .gnome-container .controls-container .button-container .fullscreen-btn {
+          margin-left: 50px; }
+        .page-container .gnome-container .controls-container .button-container .play-pause-btn {
+          width: 30px;
+          height: 30px; }
+        .page-container .gnome-container .controls-container .button-container .volume-controls {
+          display: flex;
+          align-items: center; }
+          .page-container .gnome-container .controls-container .button-container .volume-controls .mute-btn {
+            margin-left: 12px; }
+          .page-container .gnome-container .controls-container .button-container .volume-controls .volume-bar-container {
+            height: 6px;
+            width: 80px;
+            margin-left: 6px;
+            background: #FFF;
+            cursor: pointer; }
+            .page-container .gnome-container .controls-container .button-container .volume-controls .volume-bar-container .volume-bar {
+              height: 6px;
+              width: 0px;
+              background: #4E3FA3; }
+        .page-container .gnome-container .controls-container .button-container .volume-controls, .page-container .gnome-container .controls-container .button-container .play-pause-btn, .page-container .gnome-container .controls-container .button-container .fullscreen-btn {
+          opacity: .8; }
+          .page-container .gnome-container .controls-container .button-container .volume-controls:hover, .page-container .gnome-container .controls-container .button-container .play-pause-btn:hover, .page-container .gnome-container .controls-container .button-container .fullscreen-btn:hover {
+            opacity: 1; }
+  .page-container .video-tile-container {
+    display: flex;
+    justify-content: space-between;
+    width: 640px;
+    margin-top: 12px; }
+    .page-container .video-tile-container .video-tile {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 200px;
+      height: 100px;
+      color: #FFF;
+      background: #4E3FA3;
+      cursor: pointer; }
+      .page-container .video-tile-container .video-tile:hover {
+        background: #594ba7; }

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="styles/css/_gnomePlayer.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Gnome Player</title>
+</head>
+<body>
+  <div class="page-container">
+    <div class="gnome-container">
+      <div class="gnome-overlay">
+        <p class="title-overlay"></p>
+        <div class="play-overlay"></div>
+      </div>
+      <div class="up-next-overlay">
+        <p class="up-next-title"></p>
+        <div class="up-next-button-cont">
+          <img class="up-next-thumbnail" />
+          <button class="play-up-next">Play Now</button>
+        </div>
+        <p class="up-next-countdown"></p>
+      </div>
+      <div class="controls-container">
+        <div class="progress-bar">
+          <div class="progress-inner"></div>
+          <div class="progress-marker"></div>
+        </div>
+        <div class="button-container">
+          <button class="play-pause-btn">
+            <i class="fa fa-pause" style="font-size: 18px;"></i>
+          </button>
+          <p class="current-time">00:00</p>
+          <p class="duration-time"></p>
+          <div class="volume-controls">
+            <button class="mute-btn">
+              <i class="fa fa-volume-off" style="font-size: 16px;"></i>
+            </button>
+            <div class="volume-bar-container">
+              <div class="volume-bar"></div>
+            </div>
+          </div>
+          <button class="fullscreen-btn">
+            <i class="fa fa-arrows-alt" style="font-size: 16px;"></i>
+          </button>
+        </div>
+        <div class="time-widget">
+          <p class="time-widget-time"></p>
+        </div>
+      </div>
+    </div>
+    <div class="video-tile-container"></div>
+  </div>
+  <script src="./js/globalVariables.js"></script>
+  <script src="./js/playerHelpers.js"></script>
+  <script src="./js/playerInit.js"></script>
+  <script src="./js/videotileinit.js"></script>
+</body>
+</html>
