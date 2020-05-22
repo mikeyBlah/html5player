@@ -1,12 +1,11 @@
 // ONLOAD ---
-window.addEventListener("load", async function() {
-  await createPlayer();
-  await assignValues();
-  await addControlEventListeners();
-  await addPlayerEventListeners();
-  await createTiles();
-  updateHandler;
-})
+window.addEventListener("load", function() {
+  createPlayer();
+  assignValues();
+  addControlEventListeners();
+  addPlayerEventListeners();
+  createTiles();
+});
 
 const createPlayer = () => {
   const container = document.querySelector('.gnome-container');
@@ -34,7 +33,9 @@ const assignValues = () => {
   progressMarker = document.querySelector('.progress-marker');
   upNextOverlay = document.querySelector('.up-next-overlay');
   playUpNext = document.querySelector('.play-up-next');
+  console.log('###: Assign values ended');
   return
+
 }
 // ADD EVENT LISTENERS TO ELEMENTS ---
 const addControlEventListeners = () => {
@@ -56,11 +57,14 @@ const addPlayerEventListeners = () => {
   video.addEventListener("pause", function() {
     videoState = "paused";
   });
+  video.addEventListener("loadstart", function() {
+    videoState = "loadstart";
+  });
   return
 }
 
 // UPDATE HANDLER INTERVAL ---
-const updateHandler = setInterval(function() {
+const updateHandler = () => {
   updateVideoState();
   updateProgress();
   updateIcons();
@@ -68,4 +72,4 @@ const updateHandler = setInterval(function() {
     upnext();
   }
   checkEnded();
-}, 500);
+};

@@ -27,11 +27,12 @@ const playStateChanges = () => {
 }
 
 const endStateChanges = () => {
-  if(playlistValue < videoConfig.length) {
+  if(playlistValue < videoConfig.length - 1) {
     playlistValue ++;
   } else {
     playlistValue = 0;
   }
+  videoLoading = true;
   changeVideo();
 }
 // CONTROL FUNCTIONS ---
@@ -124,12 +125,12 @@ const muteClickHandler = () => {
 const updateProgress = () => {
   const progressInner = document.querySelector('.progress-inner');
   const currentTimeDisplay = document.querySelector('.current-time');
-  const markerWidth = progressMarker.offsetWidth;
   const duration = video.duration;
   const currentTime = video.currentTime;
   const currentFormatTime = formatTime(currentTime);
   const durationFormatTime = formatTime(duration);
   const barPercentage = currentTime  / duration * 100;
+  const markerWidth = progressMarker.offsetWidth;
   progressInner.style.width = `${barPercentage}%`;
   currentTimeDisplay.innerHTML = `${currentFormatTime} / ${durationFormatTime}`;
   const barPixels = progressInner.offsetWidth - markerWidth / 2;
@@ -155,6 +156,7 @@ const updateIcons = () => {
 }
 
 const formatTime = (time) => {
+  console.log(playlistValue);
   let timeRound = Math.round(time);
   let currentMinutes = Math.round(timeRound / 60);
   let currentSeconds =  timeRound % 60;
@@ -209,6 +211,7 @@ const checkEnded = () => {
 }
 
 const changeVideo = () => {
+  console.log('###: playlistvalue', playlistValue);
   source.setAttribute('src', videoConfig[playlistValue].url);
   video.load();
   video.play();

@@ -11,6 +11,7 @@ const createTiles = () => {
     newTile.append(tileTitle);
     tileContainer.append(newTile);
   }
+  setInterval(updateHandler, 500);
 }
 
 const updatePlayArray = (evt) => {
